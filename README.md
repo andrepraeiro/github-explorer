@@ -1,44 +1,128 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# First React Project
 
-## Available Scripts
+## Structures and Patterns
+### 1. Create React App
 
-In the project directory, you can run:
+    ```npx create-react-app <name> --template=typescript```
 
-### `yarn start`
+### 2. EditorConfig
+  2.1. Create .editorconfig file
+    2.2.
+      ```
+        trim_trailing_whitespace = true
+        insert_final_newline = true
+        end_of_line = lf
+      ```
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### 3.Eslint
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
 
-### `yarn test`
+  ```yarn add eslint -D```
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+  3.1. Remove eslintConfig item from package.json
 
-### `yarn build`
+  3.2.
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+  ```yarn eslint --init```
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+  3.3. create .eslintignore file
+  ```
+    **/*.js
+    node_modules
+    build
+  ```
+  3.4. edit eslintrc.json
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+  3.4.1 add plugins on extends
 
-### `yarn eject`
+  ```json
+  "extends":{
+  "...":"...",
+  "plugin:@typescript-eslint/recommended"
+  }
+  ```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+  3.4.2. add plugins on plugin item
+  ```json
+  "rules": {
+        "react-hooks/rules-of-hooks": "error",
+        "react-hooks/exhaustive-deps": "warn",
+        "react/jsx-filename-extension": [1, {"extensions": [".tsx"]}],
+        "import/prefer-default-export": "off"
+      }
+  ```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+  3.5. Install plugin to react understand typescript files
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+    ` yarn add eslint-import-resolver-typescript -D `
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+  3.5.1 create settings item on eslintrc
+  ```json
+  "settings": {
+        "import/resolver": {
+          "typescript":{}
+        }
+      }
+  ```
+  3.5.2. To eslint accept imports of tsx files without extensions
+  ```json
+  "import/extensions": [
+          "error",
+          "ignorePackages",
+          {
+            "ts": "never",
+            "tsx": "never"
+          }
+        ]
+  ```
 
-## Learn More
+### 4.Prettier
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+  4.1. install prettier
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+` yarn add prettier eslint-config-prettier eslint-plugin-prettier -D`
+
+  4.2. config prettier with eslint
+
+  4.2.1. Add on eslintrc item extends
+
+  ```
+  prettier/@typescript-eslint
+  plugin:prettier/recommended
+  ```
+4.2.2 add on eslintrc item plugin
+```
+prettier
+```
+4.2.3 add on eslintrc item rules
+```json
+"prettier/prettier":"error"
+```
+4.2.4 create prettier.config.js file
+```js
+module.exports = {
+  singleQuote: true,
+  trailingComma: 'all',
+  allowParens: 'avoid',
+};
+```
+
+- - -
+
+## Creating the application
+
+### 1. Create Routes
+
+  Install `react-router-dom` to routes management
+
+  ```sh
+  $ yarn add react-router-dom
+  $ yarn add @types/react-router-dom -D
+  ```
+  create routes folder
+
+  create in routes folder index.tsx file
+
+
+
+
